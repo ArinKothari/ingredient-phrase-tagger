@@ -100,6 +100,7 @@ def singularize(word):
     """
 
     units = {
+        "kilos":u"kilo",
         "cups": u"cup",
         "tablespoons": u"tablespoon",
         "teaspoons": u"teaspoon",
