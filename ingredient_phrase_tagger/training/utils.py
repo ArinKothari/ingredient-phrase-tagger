@@ -199,8 +199,8 @@ def singularize(word):
         'gm.': u'gram',
         'gm': u'gram',
         'kilograms': u'kilogram',
-        'kilos': u'kilogram'
-        'kilo': u'kilogram'
+        'kilos': u'kilogram',
+        'kilo': u'kilogram',
         'kilogramme': u'kilogram',
         'kg': u'kilogram',
         'kgr': u'kilogram',
