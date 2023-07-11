@@ -267,6 +267,7 @@ def singularize(word):
         'inch': u'inch',
         'inches': u'inch',
         'packet': u'package',
+        'packets': u'package',
         'pkg': u'package',
         'pkg.': u'package',
         'pkt': u'package',
@@ -286,7 +287,21 @@ def singularize(word):
         'mm': u'millimeter',
         'mm.': u'millimeter',
         "ears": u"ear",
-        "strips": u"strip"
+        "strips": u"strip",
+        "cartons": u"carton",
+        "scoops": u"scoop",
+        "boxes": u"box",
+        "links": u"link",
+        "envelopes": u"envelope",
+        "squares": u"square",
+        "containers": u"container",
+        "stems": u"stem",
+        "pods": u"pod",
+        "cubes": u"cube",
+        "racks": u"rack",
+        "ribs": u"rib",
+        "segments": u"segment",
+        "chunks": u"chunk",
  }
 
     if word in units:
