@@ -301,7 +301,7 @@ def singularize(word):
         "racks": u"rack",
         "ribs": u"rib",
         "segments": u"segment",
-        "chunks": u"chunk",
+        "chunks": u"chunk"
  }
 
     if word in units:
