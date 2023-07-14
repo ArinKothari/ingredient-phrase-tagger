@@ -71,6 +71,12 @@ class Cli(object):
             num1 = float(m1.group(1)) / float(m1.group(2))
             num2 = float(m1.group(3))
             return round(num1 * num2, 2)
+        
+        # mixed fraction
+        m1 = re.match(r'(\d+)\s+(\d)/(\d)', ss)
+        if m1 is not None:
+            num = int(m1.group(1)) + (float(m1.group(2)) / float(m1.group(3)))
+            return round(num,2)
 
         # multiply two numbers
         m4 = re.match(r'(\d+(\.\d+)?)\s+(\d+(\.\d+)?)', ss)
@@ -83,12 +89,6 @@ class Cli(object):
         m3 = re.match('^\d+$', ss)
         if m3 is not None:
             return round(float(ss), 2)
-
-        # mixed fraction
-        m1 = re.match(r'(\d+)\s+(\d)/(\d)', ss)
-        if m1 is not None:
-            num = int(m1.group(1)) + (float(m1.group(2)) / float(m1.group(3)))
-            return round(num,2)
 
         # fraction
         m2 = re.match(r'^(\d)/(\d)$', ss)
