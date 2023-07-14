@@ -63,7 +63,7 @@ class Cli(object):
             m6 = re.match(r'(\d+)\s+(\d)/(\d)', fraction)
             if m6 is not None:
                 num1 = int(m6.group(1)) + (float(m6.group(2)) / float(m6.group(3)))
-                print(decimal.Decimal(str(round(num1 * num3, 2))))
+                return decimal.Decimal(str(round(num1 * num3, 2)))
 
         # fraction times a whole number
         m1 = re.match(r'(\d)/(\d)\s+(\d+)', ss)
