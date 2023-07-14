@@ -63,38 +63,38 @@ class Cli(object):
             m6 = re.match(r'(\d+)\s+(\d)/(\d)', fraction)
             if m6 is not None:
                 num1 = int(m6.group(1)) + (float(m6.group(2)) / float(m6.group(3)))
-                return decimal.Decimal(str(round(num1 * num3, 2)))
+                return round(num1 * num3, 2)
 
         # fraction times a whole number
         m1 = re.match(r'(\d)/(\d)\s+(\d+)', ss)
         if m1 is not None:
             num1 = float(m1.group(1)) / float(m1.group(2))
             num2 = float(m1.group(3))
-            return decimal.Decimal(str(round(num1 * num2, 2)))
+            return round(num1 * num2, 2)
 
         # multiply two numbers
         m4 = re.match(r'(\d+(\.\d+)?)\s+(\d+(\.\d+)?)', ss)
         if m4 is not None:
             num1 = float(m4.group(1))
             num2 = float(m4.group(3))
-            return decimal.Decimal(str(round(num1 * num2, 2)))
+            return round(num1 * num2, 2)
         
         # just the number
         m3 = re.match('^\d+$', ss)
         if m3 is not None:
-            return decimal.Decimal(round(float(ss), 2))
+            return round(float(ss), 2)
 
         # mixed fraction
         m1 = re.match(r'(\d+)\s+(\d)/(\d)', ss)
         if m1 is not None:
             num = int(m1.group(1)) + (float(m1.group(2)) / float(m1.group(3)))
-            return decimal.Decimal(str(round(num,2)))
+            return round(num,2)
 
         # fraction
         m2 = re.match(r'^(\d)/(\d)$', ss)
         if m2 is not None:
             num = float(m2.group(1)) / float(m2.group(2))
-            return decimal.Decimal(str(round(num,2)))
+            return round(num,2)
 
         return None
 
