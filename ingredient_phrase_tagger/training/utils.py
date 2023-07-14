@@ -34,7 +34,11 @@ def clumpFractions(s):
         clumpFractions("aaa 1 2/3 bbb")
         # => "aaa 1$2/3 bbb"
     """
-    return re.sub(r'(\d+)\s+(\d)/(\d)', r'\1$\2/\3', s)
+    # NEW ADDITION
+    s = re.sub(r'(\d+)\s+(\d)/(\d)', r'\1$\2/\3', s)
+    s = re.sub(r'(\d+)\s+(\d+)', r'\1$\2', s)
+    return s
+    # return re.sub(r'(\d+)\s+(\d)/(\d)', r'\1$\2/\3', s)
 
 def cleanUnicodeFractions(s):
     """
