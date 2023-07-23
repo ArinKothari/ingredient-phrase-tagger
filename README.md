@@ -4,11 +4,8 @@ This repo contains scripts to extract the Quantity, Unit, Name, and Comments
 from unstructured ingredient phrases. Given the following input:
 
     1 pound carrots, young ones if possible
-    Kosher salt, to taste
-    2 tablespoons sherry vinegar
     2 tablespoons honey
     2 tablespoons extra-virgin olive oil
-    1 medium-size shallot, peeled and finely diced
     1/2 teaspoon fresh thyme leaves, finely chopped
     Black pepper, to taste
 
@@ -25,10 +22,20 @@ Our tool produces something like:
     }
 
 We use a conditional random field model (CRF) to extract tags from labelled
-training data, which was tagged by human news assistants.
+training data.
 
-On a 2012 Macbook Pro, training the model takes roughly 30 minutes for 130k
-examples using the [CRF++][crfpp] library.
+## Changes Made
+
+This is an updated version of ingredient-phrase-tagger library from nytimes. 
+* According to the README installation instructions, it only works for macOS
+
+The library, at the time being over 7 years old has multiple dependency issues:
+* Unsupported Python2.7
+* The CRF library CRF++ also being another dead library with missing header files
+
+These issues were fixed following an article, Resurrecting a Dead Library by mtlynch, running
+the library on Docker and using his fork of CRF++ library with support on Linux. All the commands for
+the build are ran into a `Dockerfile` with few more changes to incorporate the shut down of Python2.7.
 
 
 ## Quick Start
