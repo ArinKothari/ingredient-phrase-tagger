@@ -150,6 +150,27 @@ the model file which we generated above. There is a helper script to do this:
 * The output file `results.json` can be found in the `ingredient-phrase-tagger` directory in JSON format
   as shown in the output example at the top.
 
+## Accuracy
+
+The library has a script to evaluate it's accuracy over the test data. The accuracy is calculated at word level and sentence level.
+Since the library only extracts name, qty and unit, getting any other tags wrong doesn't affect the accuracy.
+
+Our evaluation over default settings,
+
+```
+Sentence-Level Stats:
+	correct:  1886
+	total:  2058
+	% correct:  91.64237123420797
+
+Word-Level Stats:
+	correct: 6929
+	total: 7199
+	% correct: 96.24947909431866
+```
+
+
+
 
 
 [1]:    https://taku910.github.io/crfpp/
