@@ -37,6 +37,35 @@ These issues were fixed following an article, Resurrecting a Dead Library by mtl
 the library on Docker and using his fork of CRF++ library with support on Linux. All the commands for
 the build are ran into a `Dockerfile` with few more changes to incorporate the shut down of Python2.7.
 
+Since we are adding more diverse train cases into the training data to train the mode over
+multiple unit instances and quantity patterns, the code had to be modified as such so the following
+improvements were made:
+
+* More patterns were added to identify quantities other than just one number:
+
+        100 g - Number
+        1/2 tablespoon - Fraction
+        4 2/3 cups - Mixed Fraction
+        3 2 ounce packets - Multiplication
+  These are a few examples that the model tags as a single quantity.
+
+* The library had a script to singularize units to simplify outputs which is modified
+to convert commonly used forms of units to their base form:
+```json
+{"name": "tablespoon",
+         "forms": [
+             "tablespoon",
+             "tablespoons",
+             "T",
+             "tbl",
+             "tb",
+             "tb.",
+             "tbs"]}
+```
+* We added upon the training data provided with the library with more of
+IIITD RecipeDB data from All-Recipes and FOOD.com, but it still did not cover all commonly used
+units for which data augmentation was used to make artificial data to train the model for all the missing
+units.
 
 ## Quick Start
 
