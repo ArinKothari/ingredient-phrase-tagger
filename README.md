@@ -67,7 +67,19 @@ IIITD RecipeDB data from All-Recipes and FOOD.com, but it still did not cover al
 units for which data augmentation was used to make artificial data to train the model for all the missing
 units.
 
-## Quick Start
+## Installation
+
+1. As previously mentioned, the library needs to be run on Docker so the first step is to download it's desktop client.
+2. After the installation process, download the `Dockerfile` from the repo and open powershell in the directory with the file.
+3. Run the following command to start the build process (this will take some time)
+
+         docker build --tag phrase-tagger .
+   This creates a local image on docker so you can start from step 4 from next time.
+4. Finally run the following command to create and run the library container:
+
+       docker run -it --rm phrase-tagger /bin/bash
+
+## Usage
 
 The most common usage is to train the model with a subset of our data, test the
 model against a different subset, then visualize the results. We provide a shell
@@ -78,8 +90,6 @@ script to do this, at:
 You can edit this script to specify the size of your training and testing set.
 The default is 20k training examples and 2k test examples.
 
-
-## Usage
 
 ### Training
 
