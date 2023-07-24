@@ -30,8 +30,8 @@ for sentence in sentences:
             guess = line[-2]
             gold = line[-1]
 
-            # we do not count commas
-            if word.strip() not in [',']:
+            # we do not count commas, comments or others
+            if word.strip() not in [','] and gold.split('-')[-1].lower() in ['name', 'qty', 'unit', ]::
 
                 #increment global word count
                 total_words += 1
