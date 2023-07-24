@@ -35,7 +35,7 @@ The library, at the time being over 7 years old has multiple dependency issues:
 
 These issues were fixed following an article, [Resurrecting a Dead Library][2] by mtlynch, running
 the library on Docker and using his fork of CRF++ library with support on Linux. All the commands for
-the build are ran into a `Dockerfile` with few more changes to incorporate the shut down of Python2.7.
+the build are ran into a `Dockerfile` with few more changes to incorporate the shut down of Python2.7 and our version of this library.
 
 Since we are adding more diverse train cases into the training data to train the mode over
 multiple unit instances and quantity patterns, the code had to be modified as such so the following
