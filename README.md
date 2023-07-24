@@ -137,15 +137,15 @@ added in the library. You can skip the training step if you don't want to make a
 `input.txt`), you must first convert it into the CRF++ format, then run against
 the model file which we generated above. There is a helper script to do this:
 
-        python bin/parse-ingredients.py input.txt > results.txt 
+        python bin/parse-ingredients.py input.txt > results.txt
+  * The `input.txt` file needs to be uploaded in the `ingredient-phrase-tagger` directory in Docker container
+    and values can be inputted with the following command:
+
+          echo "1 pinch Garlic Powder" >> input.txt
 
 * The output is also in CRF++ format. To convert it into JSON:
 
         python bin/convert-to-json.py results.txt > results.json
-    * The `input.txt` file needs to be uploaded in the `ingredient-phrase-tagger` directory in Docker container
-    and values can be inputted with the following command:
-
-          echo "1 pinch Garlic Powder" >> input.txt
 
 * The output file `results.json` can be found in the `ingredient-phrase-tagger` directory in JSON format
   as shown in the output example at the top.
