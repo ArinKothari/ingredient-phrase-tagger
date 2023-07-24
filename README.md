@@ -47,21 +47,23 @@ improvements were made:
         1/2 tablespoon - Fraction
         4 2/3 cups - Mixed Fraction
         3 2 ounce packets - Multiplication
+  
   These are a few examples that the model tags as a single quantity.
 
 * The library had a script to singularize units to simplify outputs which is modified
 to convert commonly used forms of units to their base form:
 ```json
 {"name": "tablespoon",
-         "forms": [
-             "tablespoon",
-             "tablespoons",
-             "T",
-             "tbl",
-             "tb",
-             "tb.",
-             "tbs"]}
+             "forms": [
+                 "tablespoon",
+                 "tablespoons",
+                 "T",
+                 "tbl",
+                 "tb",
+                 "tb.",
+                 "tbs"]}
 ```
+
 * We added upon the training data provided with the library with more of
 IIITD RecipeDB data from All-Recipes and FOOD.com, but it still did not cover all commonly used
 units for which data augmentation was used to make artificial data to train the model for all the missing
@@ -74,12 +76,13 @@ units.
 3. Run the following command to start the build process (this will take some time)
 
          docker build --tag phrase-tagger .
+   
    This creates a local image on docker so you can start from step 4 from next time.
-4. Finally run the following command to create and run the library container:
+5. Finally run the following command to create and run the library container:
 
        docker run -it --rm phrase-tagger /bin/bash
 
-## Usage
+## Quick Start
 
 The most common usage is to train the model with a subset of our data, test the
 model against a different subset, then visualize the results. We provide a shell
@@ -87,9 +90,14 @@ script to do this, at:
 
     ./roundtrip.sh
 
-You can edit this script to specify the size of your training and testing set.
-The default is 20k training examples and 2k test examples.
+* You can edit this script to specify the size of your training and testing set and change the contents of the input file `ingredients-snapshot.csv`.
+The default covers all training and test examples.
+* If the shell script is modified it loses it's execution permission, for that run:
 
+        chmod +x roundtrip.sh
+
+See the top of this README for an example of the expected output.
+* To visualize the accuracy of the model, you can open the `output.html` file in `ingredient-phrase-tagger\tmp`.
 
 ### Training
 
@@ -99,9 +107,7 @@ To train the model, we must first convert our input data into a format which
     bin/generate_data --data-path=input.csv --count=1000 --offset=0 > tmp/train_file
 
 The `count` argument specifies the number of training examples (i.e. ingredient
-lines) to read, and `offset` specifies which line to start with. There are
-roughly 180k examples in our snapshot of the New York Times cooking database
-(which we include in this repo), so it is useful to run against a subset.
+lines) to read, and `offset` specifies which line to start with.
 
 The output of this step looks something like:
 
@@ -114,11 +120,6 @@ The output of this step looks something like:
     cup          I2      L4      NoCAP  NoPAREN  B-UNIT
     sugar        I3      L4      NoCAP  NoPAREN  B-NAME
 
-    2            I1      L8      NoCAP  NoPAREN  B-QTY
-    tablespoons  I2      L8      NoCAP  NoPAREN  B-UNIT
-    dry          I3      L8      NoCAP  NoPAREN  B-NAME
-    white        I4      L8      NoCAP  NoPAREN  I-NAME
-    wine         I5      L8      NoCAP  NoPAREN  I-NAME
 
 Next, we pass this file to `crf_learn`, to generate a model file:
 
@@ -129,23 +130,16 @@ Next, we pass this file to `crf_learn`, to generate a model file:
 
 To use the model to tag your own arbitrary ingredient lines (stored here in
 `input.txt`), you must first convert it into the CRF++ format, then run against
-the model file which we generated above. We provide another helper script to do
-this:
+the model file which we generated above.
 
     python bin/parse-ingredients.py input.txt > results.txt
 
-The output is also in CRF++ format, which isn't terribly helpful to us. To
-convert it into JSON:
+The output is also in CRF++ format. To convert it into JSON:
 
     python bin/convert-to-json.py results.txt > results.json
 
 See the top of this README for an example of the expected output.
 
-
-## Authors
-
-* Erica Greene
-* Adam Mckaig
 
 
 
